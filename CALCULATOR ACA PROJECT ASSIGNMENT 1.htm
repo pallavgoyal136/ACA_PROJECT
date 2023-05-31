@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<style>
+body {
+  background-image: url(https://img.freepik.com/premium-photo/top-view-blue-calculator-notepad-color-background_260672-4055.jpg);
+  background-size: cover;
+  text-align: center;
+}
+h1{
+text-align: center;
+}
+button { 
+  width:100px; 
+  height: 50px;
+text-align: center;
+}
+input{
+width:400px; 
+  height: 100px;
+font-size:50px;
+}
+</style>
+</head> 
+<body>
+
+<h1>SCIENTIFIC CALCULATOR</h1>
+<input type="text" id="fill" hidden>
+<input type="text" id="fill2" readonly>
+<br>
+<button onclick="log()">log<sub>10</sub></button>
+<button onclick="ln()">ln</button>
+<button onclick="normal('(')">(</button>
+<button onclick="normal(')')">)</button>
+<br>
+<button onclick="e()">e</button>
+<button onclick="sinv()">sin<sup>-1</sup></button>
+<button onclick="cosv()">cos<sup>-1</sup></button>
+<button onclick="tanv()">tan<sup>-1</sup></button>
+<br>
+<button onclick="PI()"><b>&#8508</b></button>
+<button onclick="sin()">sin</button>
+<button onclick="cos()">cos</button>
+<button onclick="tan()">tan</button>
+<br>
+<button onclick="exp()">^</button>
+<button onclick="sec()">sec</button>
+<button onclick="cot()">cot</button>
+<button onclick="cosec()">cosec</button>
+<br>
+<button onclick="normal('7')">7</button>
+<button onclick="normal('8')">8</button>
+<button onclick="normal('9')">9</button>
+<button onclick="normal('/')">/</button>
+<br>
+<button onclick="normal('4')">4</button>
+<button onclick="normal('5')">5</button>
+<button onclick="normal('6')">6</button>
+<button onclick="normal('*')">*</button>
+<br>
+<button onclick="normal('1')">1</button>
+<button onclick="normal('2')">2</button>
+<button onclick="normal('3')">3</button>
+<button onclick="normal('-')">-</button>
+<br>
+<button onclick="normal('0')">0</button>
+<button onclick="normal('.')">.</button>
+<button onclick="equal()">=</button>
+<button onclick="normal('+')">+</button>
+<br>
+<button onclick="cle()">C</button>
+<button onclick="back()">Back</button>
+<script>
+function normal(arg){
+document.getElementById("fill").value+=arg;
+document.getElementById("fill2").value+=arg;
+}
+function equal(){
+var y=document.getElementById("fill").value
+document.getElementById("fill").value='MATH ERROR';
+document.getElementById("fill2").value='MATH ERROR';
+var x=eval(y);
+if(isNaN(x)){
+document.getElementById("fill").value='MATH ERROR';
+document.getElementById("fill2").value='MATH ERROR';
+}
+else{
+document.getElementById("fill").value=x;
+document.getElementById("fill2").value=document.getElementById("fill").value;
+}
+}
+function cle(){
+document.getElementById("fill").value='';
+document.getElementById("fill2").value='';
+}
+function back(){
+var x=document.getElementById("fill2").value.slice(-4,)
+y=document.getElementById("fill2").value.slice(-7,)
+if(y=='arcsin('||y=='arccos('||y=='arctan('){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-7);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-10);
+}
+else if(x=='sin('||x=='cos('||x=='tan('){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-4);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-9);
+}
+else if(document.getElementById("fill2").value.slice(-6,)=='cosec('){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-6);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-11);
+}
+else if(x=='sec('||x=='cot'){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-4);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-11);
+}
+else if(document.getElementById("fill2").value.slice(-1,)=='e'){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-1);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-6);
+}
+else if(document.getElementById("fill2").value.slice(-2,)=='PI'){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-2);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-7);
+}
+else if(document.getElementById("fill2").value.slice(-3,)=='ln('){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-3);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-8);
+}
+else if(x=='log('){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-4);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-11);
+}
+else if(document.getElementById("fill2").value.slice(-1,)=='^'){
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-1);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-2);
+}
+else{
+document.getElementById("fill2").value=document.getElementById("fill2").value.slice(0,-1);
+document.getElementById("fill").value=document.getElementById("fill").value.slice(0,-1);
+}
+}
+function exp(){
+document.getElementById("fill").value+='**';
+document.getElementById("fill2").value+='^';
+}
+function sin(){
+document.getElementById("fill").value+='Math.sin(';
+document.getElementById("fill2").value+='sin(';
+}
+function cos(){
+document.getElementById("fill").value+='Math.cos(';
+document.getElementById("fill2").value+='cos(';
+}
+function tan(){
+document.getElementById("fill").value+='Math.tan(';
+document.getElementById("fill2").value+='tan(';
+}
+function sec(){
+document.getElementById("fill").value+='1/Math.cos(';
+document.getElementById("fill2").value+='sec(';
+}
+function cosec(){
+document.getElementById("fill").value+='1/Math.sin(';
+document.getElementById("fill2").value+='cosec(';
+}
+function cot(){
+document.getElementById("fill").value+='1/Math.tan(';
+document.getElementById("fill2").value+='cot(';
+}
+function sinv(){
+document.getElementById("fill").value+='Math.asin(';
+document.getElementById("fill2").value+='arcsin(';
+}
+function cosv(){
+document.getElementById("fill").value+='Math.acos(';
+document.getElementById("fill2").value+='arccos(';
+}
+function tanv(){
+document.getElementById("fill").value+='Math.atan(';
+document.getElementById("fill2").value+='arctan(';
+}
+function ln(){
+document.getElementById("fill").value+='Math.log(';
+document.getElementById("fill2").value+='ln(';
+}
+function log(){
+document.getElementById("fill").value+='Math.log10(';
+document.getElementById("fill2").value+='log(';
+}
+function e(){
+document.getElementById("fill").value+='Math.E';
+document.getElementById("fill2").value+='e';
+}
+function PI(){
+document.getElementById("fill").value+='Math.PI';
+document.getElementById("fill2").value+='PI';
+}
+
+</script>
+
+</body>
+</html>
